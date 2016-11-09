@@ -1,0 +1,27 @@
+/// Mixin for clearing after floating child elements
+///
+/// @author Philippe De Pauw - Waterschoot
+///
+/// @access public
+///
+/// @example scss - Usage
+///   .foo {
+///     @include clearfix;
+///   }
+@mixin asm-clearfix() {
+  
+  zoom: 1;
+
+  &:before,
+  &:after {
+    content: "\0020";
+    display: block;
+    height: 0;
+    overflow: hidden;
+  }
+
+  &:after {
+    clear: both;
+  }
+  
+}

@@ -1,0 +1,58 @@
+/// Available Springflow Grid Systems
+/// @group springflow
+/// @access public
+/// @type Map
+$sf-grid-systems: (
+	'float'   : 0,
+	'flexbox' : 1
+) !default;
+
+/// Available Springflow Grid Breakpoints
+/// @group springflow
+/// @access public
+/// @type Map
+$sf-grid-breakpoints: (
+  'xxsm'  : 0,
+	'xsm'   : 320   /$default-font-size * 1rem,
+	'sm'    : 480   /$default-font-size * 1rem,
+	'md'    : 680   /$default-font-size * 1rem,
+	'lg'    : 960   /$default-font-size * 1rem,
+	'xlg'   : 1140  /$default-font-size * 1rem,
+  'xxlg'  : 1440  /$default-font-size * 1rem
+) !default;
+
+/// Default Springflow Grid Prefix Names
+/// @group springflow
+/// @access public
+/// @type Map
+$sf-grid-prefix-names: (
+	'container' : '.sf-grid__container',
+	'row'       : '.sf-grid__row',
+	'column'    : '.sf-grid__column',
+	'offset'    : '.sf-grid__offset',
+	'push'      : '.sf-grid__push',
+	'pull'      : '.sf-grid__pull',
+	'hidden'    : '.sf-grid__hidden',
+	'visible'   : '.sf-grid__visible'		
+) !default;
+
+/// Selected Springflow Grid System
+/// @group springflow
+/// @access public
+/// @type String
+$sf-grid-system: map-get($sf-grid-systems, 'float') !default;
+/// Springflow Grid Gutter Width
+/// @group springflow
+/// @access public
+/// @type Number
+$sf-grid-gutter: 1 !default;
+/// Springflow Grid Amount of Columns
+/// @group springflow
+/// @access public
+/// @type Number
+$sf-grid-columns-amount: 12 !default;
+/// Springflow Grid Conainter Maximum Width
+/// @group springflow
+/// @access public
+/// @type Number
+$sf-grid-container-max-width: map-get($sf-grid-breakpoints, 'xxlg') !default;

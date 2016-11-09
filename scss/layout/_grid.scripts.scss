@@ -1,0 +1,451 @@
+/// Mixin for creating a Springflow Grid Container based on floating
+///
+/// @author Philippe De Pauw - Waterschoot
+///
+/// @param {Map} $container-max-width [$sf-grid-container-max-width]
+/// @param {Map} $gutter [$sf-grid-gutter]
+///
+/// @access public
+///
+/// @example scss - Usage
+///   .foo {
+///     @include float-grid-container(71.25rem, 1);
+///   }
+@mixin sf-float-grid-container($container-max-width:$sf-grid-container-max-width, $gutter:$sf-grid-gutter, $dev-mode:$project-dev-mode) {
+  
+  max-width: $container-max-width;
+  margin: 0 auto;
+  padding-left: #{$gutter}rem;
+  padding-right: #{$gutter}rem;
+  @include asm-clearfix;
+  
+  @if $dev-mode {
+    &--dev {
+      padding-top:#{$gutter/2}rem;
+      padding-bottom:#{$gutter/2}rem;
+          
+      background:rgba(255, 255, 255, 0.5);	
+    }
+  }
+  
+}
+
+/// Make Grid Container
+///
+/// @author Philippe De Pauw - Waterschoot
+///
+/// @param {Map} $prefix-names [$grid-prefix-names]
+/// @param {Map} $system [$grid-system]
+/// @param {Map} $systems [$grid-systems]
+/// @param {Map} $container-max-width [$grid-container-max-width]
+/// @param {Map} $gutter [$grid-gutter]
+///
+/// @access public
+@mixin sf-make-grid-container($prefix-names:$sf-grid-prefix-names, $system:$sf-grid-system, $systems:$sf-grid-systems, $container-max-width:$sf-grid-container-max-width, $gutter:$sf-grid-gutter) { 
+  #{map-get($prefix-names, 'container')} {
+    @include sf-grid-container($system, $systems, $container-max-width, $gutter);
+  }
+} 
+
+/// Grid Container
+///
+/// @author Philippe De Pauw - Waterschoot
+///
+/// @param {Map} $system [$sf-grid-system]
+/// @param {Map} $systems [$sf-grid-systems]
+/// @param {Map} $gutter [$sf-grid-gutter]
+///
+/// @access public
+@mixin sf-grid-container($system:$sf-grid-system, $systems:$sf-grid-systems, $container-max-width:$sf-grid-container-max-width, $gutter:$sf-grid-gutter) {
+  
+  @if $system == map-get($systems, 'float') {
+    @include sf-float-grid-container($container-max-width, $gutter);
+  }
+  @else if $system == map-get($systems, 'flexbox') {
+    @include sf-flexbox-grid-container($container-max-width, $gutter);
+  }
+  
+}
+
+/// Mixin for creating a grid-container based on floating
+///
+/// @author Philippe De Pauw - Waterschoot
+///
+/// @param {Map} $container-max-width [$grid-container-max-width]
+/// @param {Map} $gutter [$grid-gutter]
+///
+/// @access public
+///
+/// @example scss - Usage
+///   .foo {
+///     @include sf-float-grid-container(71.25rem, 1);
+///   }
+@mixin sf-float-grid-container($container-max-width:$sf-grid-container-max-width, $gutter:$sf-grid-gutter, $dev-mode:$project-dev-mode) {
+  
+  max-width: $container-max-width;
+	margin: 0 auto;
+	padding-left: #{$gutter}rem;
+	padding-right: #{$gutter}rem;
+	@include asm-clearfix();
+  
+  @if $dev-mode {
+    &--dev {
+      padding-top:#{$gutter/2}rem;
+      padding-bottom:#{$gutter/2}rem;
+          
+      background:rgba(255, 255, 255, 0.5);	
+    }
+  }
+  
+}
+
+/// Mixin for creating a grid-container based on flexbox
+///
+/// @author Philippe De Pauw - Waterschoot
+///
+/// @param {Map} $container-max-width [$grid-container-max-width]
+/// @param {Map} $gutter [$grid-gutter]
+///
+/// @access public
+///
+/// @example scss - Usage
+///   .foo {
+///     @include float-grid-container(71.25rem, 1);
+///   }
+@mixin sf-flexbox-grid-container($container-max-width:$sf-grid-container-max-width, $gutter:$sf-grid-gutter, $dev-mode:$project-dev-mode) {
+  
+  @include sf-float-grid-container($container-max-width, $gutter, $dev-mode);
+  
+}
+
+/// Make Grid Row
+///
+/// @author Philippe De Pauw - Waterschoot
+///
+/// @param {Map} $prefix-names [$grid-prefix-names]
+/// @param {Map} $system [$grid-system]
+/// @param {Map} $systems [$grid-systems]
+/// @param {Map} $container-max-width [$grid-container-max-width]
+/// @param {Map} $gutter [$grid-gutter]
+///
+/// @access public
+@mixin sf-make-grid-row($prefix-names:$sf-grid-prefix-names, $system:$sf-grid-system, $systems:$sf-grid-systems, $gutter:$sf-grid-gutter) {
+  
+  #{map-get($prefix-names, 'row')} {
+    @include sf-grid-row($system, $systems, $gutter);
+  }
+} 
+
+/// Grid Row
+///
+/// @author Philippe De Pauw - Waterschoot
+///
+/// @param {Map} $system [$sf-grid-system]
+/// @param {Map} $systems [$sf-grid-systems]
+/// @param {Map} $gutter [$sf-grid-gutter]
+///
+/// @access public
+@mixin sf-grid-row($system:$sf-grid-system, $systems:$sf-grid-systems, $gutter:$sf-grid-gutter) {
+  
+  @if $system == map-get($systems, 'float') {
+    @include sf-float-grid-row($gutter);
+  }
+  @else if $system == map-get($systems, 'flexbox') {
+    @include sf-flexbox-grid-row($gutter);
+  }
+  
+}
+
+/// Mixin for creating a grid-row based on floating
+///
+/// @author Philippe De Pauw - Waterschoot
+///
+/// @param {Map} $gutter [$grid-gutter]
+///
+/// @access public
+///
+/// @example scss - Usage
+///   .foo {
+///     @include float-grid-row(1);
+///   }
+@mixin sf-float-grid-row($gutter:$sf-grid-gutter, $dev-mode:$project-dev-mode) {
+  
+  margin-left: #{$gutter/-2}rem;
+	margin-right: #{$gutter/-2}rem;
+	@include asm-clearfix();
+  
+  @if $dev-mode {
+    &--dev {	
+      padding-top:#{$gutter}rem;
+      
+      background:rgba(0, 255, 255, 0.5);
+    }
+  }
+	
+	& & {
+		@if $dev-mode {
+      &--dev {	
+        padding-top:0;				
+      }
+    }
+	}
+  
+}
+
+// Mixin for creating a grid-row based on flexbox
+///
+/// @author Philippe De Pauw - Waterschoot
+///
+/// @param {Map} $gutter [$grid-gutter]
+///
+/// @access public
+///
+/// @example scss - Usage
+///   .foo {
+///     @include float-grid-row(1);
+///   }
+@mixin sf-flexbox-grid-row($gutter:$sf-grid-gutter, $dev-mode:$project-dev-mode) {
+  
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  
+  margin-left: #{$gutter/-2}rem;
+	margin-right: #{$gutter/-2}rem;
+  
+  @if $dev-mode {
+    &--dev {	
+      padding-top:#{$gutter}rem;
+      
+      background:rgba(0, 255, 255, 0.5);
+    }
+  }
+	
+	& & {
+		@if $dev-mode {
+      &--dev {	
+        padding-top:0;				
+      }
+    }
+	}
+  
+}
+
+/// Make Grid Columns
+///
+/// @author Philippe De Pauw - Waterschoot
+///
+/// @param {Map} $prefix-names [$grid-prefix-names]
+/// @param {Map} $system [$grid-system]
+/// @param {Map} $systems [$grid-systems]
+/// @param {Map} $breakpoints [$grid-breakpoints]
+/// @param {Map} $gutter [$grid-gutter]
+/// @param {Map} $columns-amount [$grid-columns-amount]
+///
+/// @access public
+@mixin sf-make-grid-columns($prefix-names:$sf-grid-prefix-names, $system:$sf-grid-system, $systems:$sf-grid-systems, $breakpoints:$sf-grid-breakpoints, $gutter:$sf-grid-gutter, $columns-amount:$sf-grid-columns-amount) {
+  
+  #{map-get($prefix-names, 'column')}--dev {
+    background: rgba(255, 0, 255, 0.5);
+    height: 86px;
+    
+    border:1px solid rgba(0, 0, 0, 0.5);
+    
+    & & {
+      background: rgba(255, 255, 0, 0.5);
+      height: 66px;
+    }
+  }
+  
+  $list:'';
+  
+  @for $i from 1 through $columns-amount {
+    $list: if($i == 1, '#{$list}', '#{$list}, ') + '#{map-get($prefix-names, 'column')}-#{$i}';      
+  }
+  
+  @each $breakpoint-key, $breakpoint-val in $breakpoints {
+    @for $i from 1 through $columns-amount {
+      $list: '#{$list}, #{map-get($prefix-names, 'column')}-#{$breakpoint-key}-#{$i}';      
+    }
+  }
+  
+  #{$list} {
+    @include sf-grid-column($system, $systems, $gutter);
+  }
+  
+}
+
+/// Grid Column
+///
+/// @author Philippe De Pauw - Waterschoot
+///
+/// @param {Map} $system [$grid-system]
+/// @param {Map} $systems [$grid-systems]
+/// @param {Map} $gutter [$grid-gutter]
+///
+/// @access public
+@mixin sf-grid-column($system:$grid-system, $systems:$sf-grid-systems, $gutter:$sf-grid-gutter) {
+  
+  @if $system == map-get($systems, 'float') {
+    @include sf-float-grid-column($gutter);
+  }
+  @else if $system == map-get($systems, 'flexbox') {
+    @include sf-flexbox-grid-column($gutter);
+  }
+  
+}
+
+/// Mixin for creating a grid-column based on floating
+///
+/// @author Philippe De Pauw - Waterschoot
+///
+/// @param {Map} $gutter [$grid-gutter]
+///
+/// @access public
+///
+/// @example scss - Usage
+///   .foo {
+///     @include float-grid-column(1);
+///   }
+@mixin sf-float-grid-column($gutter:$sf-grid-gutter) {
+  
+  position: relative;
+  float:left;
+  
+  padding-left: #{$gutter/2}rem;
+  padding-right: #{$gutter/2}rem;
+  width:100%;
+  min-height:1px;
+  overflow:hidden;  
+}
+
+/// Mixin for creating a grid-column based on flexbox
+///
+/// @author Philippe De Pauw - Waterschoot
+///
+/// @param {Map} $gutter [$grid-gutter]
+///
+/// @access public
+///
+/// @example scss - Usage
+///   .foo {
+///     @include flexbox-grid-column(1);
+///   }
+@mixin sf-flexbox-grid-column($gutter:$sf-grid-gutter) {
+  
+  position: relative;
+  
+  display: flex;
+  flex-direction: column;
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-grow: 1;
+  flex-basis: 0;
+  
+  padding-left: #{$gutter/2}rem;
+  padding-right: #{$gutter/2}rem;
+  max-width: 100%;
+  overflow:hidden;  
+}
+
+/// Make Grid Media Queries
+///
+/// @author Philippe De Pauw - Waterschoot
+///
+/// @param {Map} $prefix-names [$grid-prefix-names]
+/// @param {Map} $system [$grid-system]
+/// @param {Map} $systems [$grid-systems]
+/// @param {Map} $breakpoints [$grid-breakpoints]
+/// @param {Map} $columns-amount [$grid-columns-amount]
+/// @param {Map} $dev-mode [$project-dev-mode]
+///
+/// @access public
+@mixin sf-make-grid-queries($prefix-names:$sf-grid-prefix-names, $system:$sf-grid-system, $systems:$sf-grid-systems, $breakpoints:$sf-grid-breakpoints, $columns-amount:$sf-grid-columns-amount, $dev-mode:$project-dev-mode) {
+  
+  @include sf-grid-elements-forbreakpointkey($prefix-names, $system, $systems, 0, $columns-amount, $dev-mode);
+  
+  @each $breakpoint-key, $breakpoint-val in $breakpoints {
+    @media (min-width: $breakpoint-val) {
+      @include sf-grid-elements-forbreakpointkey($prefix-names, $system, $systems, $breakpoint-key, $columns-amount, $dev-mode);
+    }   
+  }  
+}
+
+/// Grid Elements For Breakpoint Key
+///
+/// @author Philippe De Pauw - Waterschoot
+///
+/// @param {Map} $prefix-names [$grid-prefix-names]
+/// @param {Map} $system [$grid-system]
+/// @param {Map} $systems [$grid-systems]
+/// @param {Map} $breakpoint-key [$breakpoint-key]
+/// @param {Map} $columns-amount [$grid-columns-amount]
+/// @param {Map} $dev-mode [$project-dev-mode]
+///
+/// @access public
+@mixin sf-grid-elements-forbreakpointkey($prefix-names:$sf-grid-prefix-names, $system:$sf-grid-system, $systems:$sf-grid-systems, $breakpoint-key:$sf-breakpoint-key, $columns-amount:$sf-grid-columns-amount, $dev-mode:$project-dev-mode) {
+  
+  $breakpoint-key-fix: if($breakpoint-key != 0, '-#{$breakpoint-key}', ''); 
+     
+  // Columns
+  @for $i from 1 through $columns-amount {   
+        
+    #{map-get($prefix-names, 'column')}#{$breakpoint-key-fix}-#{$i} { 
+      @if $system == map-get($systems, 'float') {
+        width: #{($i/$columns-amount)*100%};
+      }
+      @else if $system == map-get($systems, 'flexbox') {
+        flex-basis: #{($i/$columns-amount)*100%};
+        max-width: #{($i/$columns-amount)*100%};
+      }
+      @if $dev-mode {
+        &:before { content: "#{$breakpoint-key}-col#{$i}" !important; } 
+      } 
+    } 
+          
+  }  
+  
+  // Offset
+  @for $i from 1 through $columns-amount { 
+    
+    @if ( $i != $columns-amount ) {
+      #{map-get($prefix-names, 'offset')}#{$breakpoint-key-fix}-#{$i} {
+        margin-left: #{($i/$columns-amount)*100%}; 
+      }
+    }  
+          
+  }
+  
+  // Push
+  @for $i from 1 through $columns-amount { 
+    
+    @if ( $i != $columns-amount ) {
+      #{map-get($prefix-names, 'push')}#{$breakpoint-key-fix}-#{$i} {
+        left: #{($i/$columns-amount)*100%}; 
+      }
+    }  
+          
+  }
+  
+  // Pull
+  @for $i from 1 through $columns-amount { 
+    
+    @if ( $i != $columns-amount ) {
+      #{map-get($prefix-names, 'pull')}#{$breakpoint-key-fix}-#{$i} {
+        right: #{($i/$columns-amount)*100%}; 
+      }
+    }  
+          
+  }
+  
+  // Hidden
+  #{map-get($prefix-names, 'hidden')}#{$breakpoint-key-fix} {
+    display: none;
+  }
+  
+  // Hidden
+  #{map-get($prefix-names, 'visible')}#{$breakpoint-key-fix} {
+    display: block;
+  }
+     
+}
