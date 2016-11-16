@@ -4,7 +4,8 @@
 /// @type Map
 $sf-grid-systems: (
 	'float'   : 0,
-	'flexbox' : 1
+	'flexbox' : 1,
+	'masonry' : 2
 ) !default;
 
 /// Available Springflow Grid Breakpoints
