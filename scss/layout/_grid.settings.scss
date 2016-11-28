@@ -42,18 +42,30 @@ $sf-grid-prefix-names: (
 /// @access public
 /// @type String
 $sf-grid-system: map-get($sf-grid-systems, 'float') !default;
+
 /// Springflow Grid Gutter Width
 /// @group springflow
 /// @access public
 /// @type Number
 $sf-grid-gutter: 1 !default;
+
 /// Springflow Grid Amount of Columns
 /// @group springflow
 /// @access public
 /// @type Number
 $sf-grid-columns-amount: 12 !default;
+
 /// Springflow Grid Conainter Maximum Width
 /// @group springflow
 /// @access public
 /// @type Number
 $sf-grid-container-max-width: map-get($sf-grid-breakpoints, 'xxlg') !default;
+
+/// Springflow Grid Dev Colors
+/// @group springflow
+/// @access public
+/// @type Number
+$color-dev-container	: rgba(40,53,147 ,1);
+$color-dev-row			: rgba(0,131,143 ,1);
+$color-dev-column		: rgba(85,139,47 ,1);
+$color-dev-column-column: rgba(249,168,37 ,1);
