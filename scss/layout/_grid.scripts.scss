@@ -246,10 +246,10 @@
 @mixin sf-make-grid-columns($prefix-names:$sf-grid-prefix-names, $system:$sf-grid-system, $systems:$sf-grid-systems, $breakpoints:$sf-grid-breakpoints, $gutter:$sf-grid-gutter, $columns-amount:$sf-grid-columns-amount) {
   
   #{map-get($prefix-names, 'column')}--dev {
-    background: $color-dev-column-column;
+    background: $color-dev-column;
     height: 86px;
     
-    border:1px solid rgba(0, 0, 0, 0.5);
+    border:1px solid $color-dev-column-border;
     
     & & {
       background: $color-dev-column-column;
@@ -399,7 +399,7 @@
         max-width: #{($i/$columns-amount)*100%};
       }
       @if $dev-mode {
-        &:before { content: "#{$breakpoint-key}-col#{$i}" !important; } 
+        &:before { display: block; content: "#{$breakpoint-key}-col#{$i}" !important; } 
       } 
     } 
           
