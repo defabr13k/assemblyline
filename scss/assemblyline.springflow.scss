@@ -1,10 +1,10 @@
 @charset 'UTF-8';
 
 @import
-  'core/base.settings',
-  'core/base',
-  'core/helpers.scripts',
-  'core/helpers';
+  'base/helpers.scripts',
+  'base/helpers',
+  'base/core.settings',
+  'base/core';
 
 @import
   'layout/grid.scripts',
