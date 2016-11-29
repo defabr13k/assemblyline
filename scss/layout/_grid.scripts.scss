@@ -255,6 +255,11 @@
       background: $color-dev-column-column;
       height: 66px;
     }
+
+    & & & {
+      background: $color-dev-column-column-column;
+    }
+
   }
   
   $list:'';
