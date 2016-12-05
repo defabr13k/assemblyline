@@ -1,35 +1,3 @@
-/// Mixin for creating a Springflow Grid Container based on floating
-///
-/// @author Philippe De Pauw - Waterschoot
-///
-/// @param {Map} $container-max-width [$sf-grid-container-max-width]
-/// @param {Map} $gutter [$sf-grid-gutter]
-///
-/// @access public
-///
-/// @example scss - Usage
-///   .foo {
-///     @include float-grid-container(71.25rem, 1);
-///   }
-@mixin sf-float-grid-container($container-max-width:$sf-grid-container-max-width, $gutter:$sf-grid-gutter, $dev-mode:$project-dev-mode) {
-  
-  max-width: $container-max-width;
-  margin: 0 auto;
-  padding-left: #{$gutter}rem;
-  padding-right: #{$gutter}rem;
-  @include asm-clearfix;
-  
-  @if $dev-mode {
-    &--dev {
-      padding-top:#{$gutter/2}rem;
-      padding-bottom:#{$gutter/2}rem;
-          
-      background:	$color-dev-container;
-    }
-  }
-  
-}
-
 /// Make Grid Container
 ///
 /// @author Philippe De Pauw - Waterschoot
@@ -44,6 +12,22 @@
 @mixin sf-make-grid-container($prefix-names:$sf-grid-prefix-names, $system:$sf-grid-system, $systems:$sf-grid-systems, $container-max-width:$sf-grid-container-max-width, $gutter:$sf-grid-gutter) { 
   #{map-get($prefix-names, 'container')} {
     @include sf-grid-container($system, $systems, $container-max-width, $gutter);
+  }
+} 
+
+/// Make Grid Container Fluid
+///
+/// @author Philippe De Pauw - Waterschoot
+///
+/// @param {Map} $prefix-names [$grid-prefix-names]
+/// @param {Map} $system [$grid-system]
+/// @param {Map} $systems [$grid-systems]
+/// @param {Map} $gutter [$grid-gutter]
+///
+/// @access public
+@mixin sf-make-grid-container-fluid($prefix-names:$sf-grid-prefix-names, $system:$sf-grid-system, $systems:$sf-grid-systems, $gutter:$sf-grid-gutter) { 
+  #{map-get($prefix-names, 'container-fluid')} {
+    @include sf-grid-container-fluid($system, $systems, $container-max-width, $gutter);
   }
 } 
 
@@ -67,6 +51,23 @@
   
 }
 
+/// Grid Container Fluid
+///
+/// @author Philippe De Pauw - Waterschoot
+///
+/// @param {Map} $system [$sf-grid-system]
+/// @param {Map} $systems [$sf-grid-systems]
+/// @param {Map} $gutter [$sf-grid-gutter]
+///
+/// @access public
+@mixin sf-grid-container-fluid($system:$sf-grid-system, $systems:$sf-grid-systems, $gutter:$sf-grid-gutter) {
+  
+  @if $system == map-get($systems, 'float') {
+    @include sf-float-grid-container-fluid($container-max-width, $gutter);
+  }
+  
+}
+
 /// Mixin for creating a grid-container based on floating
 ///
 /// @author Philippe De Pauw - Waterschoot
@@ -83,6 +84,37 @@
 @mixin sf-float-grid-container($container-max-width:$sf-grid-container-max-width, $gutter:$sf-grid-gutter, $dev-mode:$project-dev-mode) {
   
   max-width: $container-max-width;
+	margin: 0 auto;
+	padding-left: #{$gutter}rem;
+	padding-right: #{$gutter}rem;
+	@include asm-clearfix();
+  
+  @if $dev-mode {
+    &--dev {
+      padding-top:#{$gutter/2}rem;
+      padding-bottom:#{$gutter/2}rem;
+          
+      background: $color-dev-container;	
+    }
+  }
+  
+}
+
+/// Mixin for creating a grid-container fluid based on floating
+///
+/// @author Philippe De Pauw - Waterschoot
+///
+/// @param {Map} $gutter [$grid-gutter]
+///
+/// @access public
+///
+/// @example scss - Usage
+///   .foo {
+///     @include sf-float-grid-container-fluid(1);
+///   }
+@mixin sf-float-grid-container-fluid($gutter:$sf-grid-gutter, $dev-mode:$project-dev-mode) {
+  
+  max-width: 100%;
 	margin: 0 auto;
 	padding-left: #{$gutter}rem;
 	padding-right: #{$gutter}rem;

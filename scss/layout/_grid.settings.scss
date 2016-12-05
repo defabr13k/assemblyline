@@ -27,6 +27,7 @@ $sf-grid-breakpoints: (
 /// @access public
 /// @type Map
 $sf-grid-prefix-names: (
+	'container-fluid' : '.sf-grid__container-fluid',
 	'container' : '.sf-grid__container',
 	'row'       : '.sf-grid__row',
 	'column'    : '.sf-grid__column',
