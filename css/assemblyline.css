@@ -66,20 +66,20 @@ html {
   }
 }
 */
-.sf-grid__container {
-  max-width: 90rem;
+.sf-grid__container-fluid {
+  max-width: 100%;
   margin: 0 auto;
   padding-left: 1rem;
   padding-right: 1rem;
   zoom: 1; }
-  .sf-grid__container:before, .sf-grid__container:after {
+  .sf-grid__container-fluid:before, .sf-grid__container-fluid:after {
     content: "\0020";
     display: block;
     height: 0;
     overflow: hidden; }
-  .sf-grid__container:after {
+  .sf-grid__container-fluid:after {
     clear: both; }
-  .sf-grid__container--dev {
+  .sf-grid__container-fluid--dev {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
     background: #283593; }

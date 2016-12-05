@@ -1,3 +1,19 @@
+/// Make Grid Container Fluid
+///
+/// @author Philippe De Pauw - Waterschoot
+///
+/// @param {Map} $prefix-names [$grid-prefix-names]
+/// @param {Map} $system [$grid-system]
+/// @param {Map} $systems [$grid-systems]
+/// @param {Map} $gutter [$grid-gutter]
+///
+/// @access public
+@mixin sf-make-grid-container-fluid($prefix-names:$sf-grid-prefix-names, $system:$sf-grid-system, $systems:$sf-grid-systems, $gutter:$sf-grid-gutter) { 
+  #{map-get($prefix-names, 'container-fluid')} {
+    @include sf-grid-container-fluid($system, $systems, $gutter);
+  }
+} 
+
 /// Make Grid Container
 ///
 /// @author Philippe De Pauw - Waterschoot
@@ -12,22 +28,6 @@
 @mixin sf-make-grid-container($prefix-names:$sf-grid-prefix-names, $system:$sf-grid-system, $systems:$sf-grid-systems, $container-max-width:$sf-grid-container-max-width, $gutter:$sf-grid-gutter) { 
   #{map-get($prefix-names, 'container')} {
     @include sf-grid-container($system, $systems, $container-max-width, $gutter);
-  }
-} 
-
-/// Make Grid Container Fluid
-///
-/// @author Philippe De Pauw - Waterschoot
-///
-/// @param {Map} $prefix-names [$grid-prefix-names]
-/// @param {Map} $system [$grid-system]
-/// @param {Map} $systems [$grid-systems]
-/// @param {Map} $gutter [$grid-gutter]
-///
-/// @access public
-@mixin sf-make-grid-container-fluid($prefix-names:$sf-grid-prefix-names, $system:$sf-grid-system, $systems:$sf-grid-systems, $gutter:$sf-grid-gutter) { 
-  #{map-get($prefix-names, 'container-fluid')} {
-    @include sf-grid-container-fluid($system, $systems, $container-max-width, $gutter);
   }
 } 
 
@@ -63,7 +63,7 @@
 @mixin sf-grid-container-fluid($system:$sf-grid-system, $systems:$sf-grid-systems, $gutter:$sf-grid-gutter) {
   
   @if $system == map-get($systems, 'float') {
-    @include sf-float-grid-container-fluid($container-max-width, $gutter);
+    @include sf-float-grid-container-fluid($gutter);
   }
   
 }
